@@ -8,3 +8,5 @@ class Animal {
 }
 
 const dog = new Animal('dog');
+
+console.log('aaa')
