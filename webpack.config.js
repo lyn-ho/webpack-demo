@@ -6,6 +6,8 @@ const config = require('./public/config')[isDev ? 'dev' : 'build']
 module.exports = {
   mode: 'development',
 
+  devtool: 'cheap-module-eval-source-map', //开发环境下使用
+
   devServer: {
     port: '3000',  // 默认 8080
     quiet: false,  // 默认不启用
