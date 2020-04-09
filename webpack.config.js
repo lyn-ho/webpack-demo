@@ -23,7 +23,21 @@ module.exports = {
         test: /\.jsx?$/,
         use: ['babel-loader'],
         exclude: /node_modules/
-      }
+      },
+      {
+        test: /\.(le|c)ss$/,
+        use: ['style-loader', 'css-loader', {
+          loader: 'postcss-loader',
+          options: {
+            plugins: function () {
+              return [require('autoprefixer')({
+                'overrideBrowsersList': ['>0.25%', 'not dead']
+              })]
+            }
+          }
+        }, 'less-loader'],
+        exclude: '/node_modules/'
+      },
     ]
   },
 
