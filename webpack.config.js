@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const isDev = process.env.NODE_ENV === 'development'
 const config = require('./public/config')[isDev ? 'dev' : 'build']
@@ -69,6 +70,8 @@ module.exports = {
       },
       // hash: true,  // 是否加上 hash，默认是 false
       config: config.template
-    })
+    }),
+
+    new CleanWebpackPlugin()
   ]
 }
