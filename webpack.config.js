@@ -38,6 +38,19 @@ module.exports = {
         }, 'less-loader'],
         exclude: '/node_modules/'
       },
+      {
+        test: /\.(png|jpg|gif|jpeg|webp|svg|eot|ttf|woff|woff2)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 10240, // 10k
+            esModule: false,
+            name: '[name]_[hash:6].[ext]',
+            outputPath: 'assets',
+          }
+        }],
+        exclude: /node_modules/
+      },
     ]
   },
 
