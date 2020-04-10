@@ -134,5 +134,30 @@ module.exports = {
 
   externals: {
     'jquery': 'jQuery'
-  }
+  },
+
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          priority: 1,
+          name: 'vendor',
+          test: /node_modules/,
+          chunks: 'initial',
+          minSize: 0,
+          minChunks: 1
+        },
+
+        common: {
+          chunks: 'initial',
+          name: 'common',
+          minSize: 100,
+          minChunks: 3
+        }
+      }
+    },
+    runtimeChunk: {
+      name: 'manifest'
+    }
+  },
 }
