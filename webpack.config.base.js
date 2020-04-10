@@ -25,7 +25,8 @@ module.exports = {
       {
         test: /\.jsx?$/,
         // use: ['cache-loader', 'babel-loader'],
-        use: 'Happypack/loader?id=js',
+        // use: 'Happypack/loader?id=js',
+        use: ['thread-loader', 'cache-loader', 'babel-loader'],
         exclude: /node_modules/
       },
       {
