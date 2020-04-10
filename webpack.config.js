@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const isDev = process.env.NODE_ENV === 'development'
 const config = require('./public/config')[isDev ? 'dev' : 'build']
@@ -29,13 +30,11 @@ module.exports = {
       },
       {
         test: /\.(le|c)ss$/,
-        use: ['style-loader', 'css-loader', {
+        use: [MiniCssExtractPlugin.loader, 'css-loader', {
           loader: 'postcss-loader',
           options: {
             plugins: function () {
-              return [require('autoprefixer')({
-                'overrideBrowsersList': ['>0.25%', 'not dead']
-              })]
+              return [require('autoprefixer')]
             }
           }
         }, 'less-loader'],
@@ -83,5 +82,9 @@ module.exports = {
     }], {
       ignore: ['other.js']
     }),
+
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css'
+    })
   ]
 }
