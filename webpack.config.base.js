@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const Happypack = require('happypack')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development'
 const config = require('./public/config')[isDev ? 'dev' : 'build']
@@ -110,10 +111,12 @@ module.exports = {
       filename: '[name].css'
     }),
 
-    new Happypack({
-      id: 'js',
-      use: ['babel-loader']
-    })
+    // new Happypack({
+    //   id: 'js',
+    //   use: ['babel-loader']
+    // }),
+
+    new HardSourceWebpackPlugin(),
   ],
 
   resolve: {
