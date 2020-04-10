@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -15,6 +16,7 @@ module.exports = {
 
   devServer: {
     port: '3000',  // 默认 8080
+    hot: true,
     quiet: false,  // 默认不启用
     inline: true,  // 默认开启 inline 模式，如果设置为false,开启 iframe 模式
     stats: 'errors-only',  // 终端仅打印 error
@@ -96,10 +98,17 @@ module.exports = {
       ignore: ['other.js']
     }),
 
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      _map: ['lodash', 'map']
+    }),
+
     new MiniCssExtractPlugin({
       filename: '[name].css'
     }),
 
     new OptimizeCssPlugin(),
+
+    new webpack.HotModuleReplacementPlugin(),
   ]
 }

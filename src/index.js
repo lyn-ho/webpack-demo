@@ -1,18 +1,11 @@
-import './index.less'
+import A from './a';
+import './css/index.less';
 
-class Animal {
-    constructor(name) {
-        this.name = name;
-    }
-    getName() {
-        return this.name;
-    }
-}
-
-const dog = new Animal('dog');
-
-console.log('aaa')
-
+A();
+// console.log(DEV)
 document.getElementById('btn').onclick = function() {
     import('./handle').then(fn => fn.default());
 }
+
+
+console.log($, _map)
