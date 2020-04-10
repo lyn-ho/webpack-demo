@@ -10,7 +10,6 @@ const isDev = process.env.NODE_ENV === 'development'
 const config = require('./public/config')[isDev ? 'dev' : 'build']
 
 module.exports = {
-  mode: 'development',
 
   entry: {
     index: './src/index.js',
@@ -127,5 +126,9 @@ module.exports = {
     new OptimizeCssPlugin(),
 
     new webpack.HotModuleReplacementPlugin(),
-  ]
+  ],
+
+  resolve: {
+    modules: ['node_modules']
+  }
 }
