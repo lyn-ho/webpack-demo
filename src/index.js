@@ -12,3 +12,7 @@ class Animal {
 const dog = new Animal('dog');
 
 console.log('aaa')
+
+document.getElementById('btn').onclick = function() {
+    import('./handle').then(fn => fn.default());
+}
