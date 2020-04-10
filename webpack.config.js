@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin')
 
 const isDev = process.env.NODE_ENV === 'development'
 const config = require('./public/config')[isDev ? 'dev' : 'build']
@@ -30,14 +31,26 @@ module.exports = {
       },
       {
         test: /\.(le|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', {
-          loader: 'postcss-loader',
-          options: {
-            plugins: function () {
-              return [require('autoprefixer')]
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: isDev,
+              reloadAll: true
             }
-          }
-        }, 'less-loader'],
+          },
+          // 'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: function () {
+                return [require('autoprefixer')]
+              }
+            }
+          },
+          'less-loader',
+        ],
         exclude: '/node_modules/'
       },
       {
@@ -84,7 +97,9 @@ module.exports = {
     }),
 
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css'
-    })
+      filename: '[name].css'
+    }),
+
+    new OptimizeCssPlugin(),
   ]
 }

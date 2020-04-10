@@ -1,6 +1,7 @@
 body {
   height: 100vh;
-  background-color: red;
+  background-color: pink;
   transition: all 2s;
   background: url('thor.jpg');
+  background-repeat: no-repeat;
 }
