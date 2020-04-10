@@ -1,10 +1,9 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin')
+
 
 const isDev = process.env.NODE_ENV === 'development'
 const config = require('./public/config')[isDev ? 'dev' : 'build']
@@ -104,8 +103,6 @@ module.exports = {
       chunks: ['login']
     }),
 
-    new CleanWebpackPlugin(),
-
     new CopyWebpackPlugin([{
       from: 'public/js/*.js',
       to: path.resolve(__dirname, 'dist', 'js'),
@@ -122,8 +119,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css'
     }),
-
-    new OptimizeCssPlugin(),
 
     new webpack.HotModuleReplacementPlugin(),
   ],
