@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config=webpack.config.dev.js",
-    "build": "cross-env NODE_ENV=production webpack --config=webpack.config.prod.js"
+    "build": "cross-env NODE_ENV=production webpack --config=webpack.config.prod.js",
+    "build:dll": "webpack --config webpack.config.dll.js"
   },
   "repository": {
     "type": "git",
@@ -53,6 +54,8 @@
     "@babel/runtime": "^7.9.2",
     "@babel/runtime-corejs3": "^7.9.2",
     "jquery": "^3.4.1",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }

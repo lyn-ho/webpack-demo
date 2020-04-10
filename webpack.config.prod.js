@@ -15,7 +15,9 @@ const config = smart(base, {
   plugins: [
     new OptimizeCssPlugin(),
 
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['**/*', '!dll', '!dll/**']
+    }),
 
     new webpack.DefinePlugin({
       DEV: JSON.stringify('production')

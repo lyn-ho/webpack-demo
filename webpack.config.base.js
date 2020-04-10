@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const Happypack = require('happypack')
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 
 const isDev = process.env.NODE_ENV === 'development'
 const config = require('./public/config')[isDev ? 'dev' : 'build']
@@ -121,6 +121,11 @@ module.exports = {
     new HardSourceWebpackPlugin(),
 
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+
+    new webpack.DllReferencePlugin({
+      manifest: path.resolve(__dirname, 'dist', 'dll', 'manifest.json')
+    }),
+
   ],
 
   resolve: {
