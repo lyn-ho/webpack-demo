@@ -119,6 +119,8 @@ module.exports = {
     // }),
 
     new HardSourceWebpackPlugin(),
+
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ],
 
   resolve: {
