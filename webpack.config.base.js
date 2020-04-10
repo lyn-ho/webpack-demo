@@ -71,7 +71,9 @@ module.exports = {
       //   test: /.html$/,
       //   use: 'html-withimg-loader'
       // },
-    ]
+    ],
+
+    noParse: /jquery|lodash/,
   },
 
   plugins: [
