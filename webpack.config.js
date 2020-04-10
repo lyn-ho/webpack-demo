@@ -12,6 +12,16 @@ const config = require('./public/config')[isDev ? 'dev' : 'build']
 module.exports = {
   mode: 'development',
 
+  entry: {
+    index: './src/index.js',
+    login: './src/login.js'
+  },
+
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[hash:6].js'
+  },
+
   devtool: 'cheap-module-eval-source-map', //开发环境下使用
 
   devServer: {
@@ -85,7 +95,14 @@ module.exports = {
         collapseWhitespace: false  // 是否折叠空白
       },
       // hash: true,  // 是否加上 hash，默认是 false
-      config: config.template
+      config: config.template,
+      chunks: ['index']
+    }),
+
+    new HtmlWebpackPlugin({
+      template: './public/login.html',
+      filename: 'login.html',
+      chunks: ['login']
     }),
 
     new CleanWebpackPlugin(),
