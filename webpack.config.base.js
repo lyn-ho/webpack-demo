@@ -125,5 +125,9 @@ module.exports = {
 
   resolve: {
     modules: ['node_modules']
+  },
+
+  externals: {
+    'jquery': 'jQuery'
   }
 }
