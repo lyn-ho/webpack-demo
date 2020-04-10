@@ -1,11 +1,16 @@
 const webpack = require('webpack')
-const merger = require('webpack-merge')
+const { smart } = require('webpack-merge')
 const base = require('./webpack.config.base')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin')
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
 
-module.exports = merger(base, {
+const smp = new SpeedMeasurePlugin()
+
+const config = smart(base, {
   mode: 'production',
+
+  devtool: 'source-map',
 
   plugins: [
     new OptimizeCssPlugin(),
@@ -17,3 +22,5 @@ module.exports = merger(base, {
     })
   ]
 })
+
+module.exports = smp.wrap(config)
